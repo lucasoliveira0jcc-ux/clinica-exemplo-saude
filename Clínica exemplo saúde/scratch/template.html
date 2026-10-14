@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica Exemplo Saúde · Fortaleza</title>
+<meta name="description" content="Página de exemplo. Consultas, exames e diagnóstico em Fortaleza.">
+<style>
+__FONTS__
+:root{--petroleo:#1B5E7A;--folha:#5E9C3A;--tinta:#123A4E;--apoio:#4A5A58;--fundo:#F4F6F5;--branco:#FFFFFF;--folha-claro:#A9D18E;--nevoa:#C9D6DC;--borda:#DCE3E1;--petroleo-escuro:#164D64}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--branco);color:var(--tinta);font:400 1.0625rem/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{font-family:Manrope,system-ui,sans-serif;color:var(--tinta);margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0;text-wrap:pretty}
+a{color:var(--petroleo);text-underline-offset:3px}
+a:hover{color:var(--tinta)}
+:focus-visible{outline:3px solid var(--petroleo);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.eyebrow{font:600 .8125rem/1 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--petroleo);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:20px;height:3px;border-radius:2px;background:var(--folha)}
+.h2{font-size:clamp(1.75rem,1.2rem + 2vw,2.5rem);line-height:1.15;font-weight:700}
+.lead{color:var(--apoio);font-size:1.0625rem;max-width:52ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:10px;font:600 1rem/1 Inter,sans-serif;text-decoration:none;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.btn-primario{background:var(--petroleo);color:var(--branco)}
+.btn-primario:hover{background:var(--petroleo-escuro);color:var(--branco)}
+.btn-secundario{color:var(--petroleo);border:1.5px solid var(--petroleo);background:transparent}
+.btn-secundario:hover{background:var(--fundo);color:var(--tinta)}
+.btn svg{width:18px;height:18px;flex:none}
+section{padding:clamp(64px,8vw,112px) 0}
+.sec-head{display:grid;gap:14px;margin-bottom:clamp(32px,4vw,48px)}
+
+/* Cabeçalho */
+.topo{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+@supports (animation-timeline:scroll()){
+  .topo{animation:topo linear both;animation-timeline:scroll(root);animation-range:0 80px}
+  @keyframes topo{from{background:rgba(255,255,255,0);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0)}to{background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}}
+}
+.topo-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.marca{display:flex;align-items:center;gap:10px;font:700 1.0625rem/1.1 Manrope,sans-serif;color:var(--tinta);text-decoration:none;letter-spacing:-.01em}
+.marca:hover{color:var(--tinta)}
+.marca i{width:12px;height:12px;border-radius:3px;background:var(--folha);box-shadow:6px 6px 0 -1px var(--petroleo);margin-right:6px;flex:none}
+.nav{display:flex;gap:4px}
+.nav a{font:500 .9375rem/1 Inter,sans-serif;color:var(--tinta);text-decoration:none;padding:12px 14px;border-radius:8px}
+.nav a:hover{background:var(--fundo);color:var(--petroleo)}
+.menu-m{display:none;position:relative}
+.menu-m summary{list-style:none;cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;padding:0 16px;border:1.5px solid var(--petroleo);border-radius:10px;font:600 .9375rem/1 Inter,sans-serif;color:var(--petroleo);background:var(--branco)}
+.menu-m summary::-webkit-details-marker{display:none}
+.menu-m summary span{display:grid;gap:4px}
+.menu-m summary span::before,.menu-m summary span::after{content:"";width:16px;height:2px;background:currentColor;border-radius:1px}
+.menu-m[open] summary{background:var(--petroleo);color:var(--branco)}
+.menu-m nav{position:absolute;right:0;top:calc(100% + 8px);width:min(240px,calc(100vw - 40px));background:var(--branco);border-radius:12px;box-shadow:0 12px 32px rgba(18,58,78,.16);padding:8px;display:grid}
+.menu-m nav a{padding:14px 14px;border-radius:8px;color:var(--tinta);text-decoration:none;font-weight:500}
+.menu-m nav a:hover{background:var(--fundo)}
+@media (max-width:860px){.nav{display:none}.menu-m{display:block}}
+
+/* Apresentação */
+.hero{padding:clamp(24px,4vw,56px) 0 clamp(64px,8vw,104px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(2.25rem,1.4rem + 3.4vw,3.75rem);line-height:1.06;font-weight:800;letter-spacing:-.03em;max-width:14ch}
+.hero .lead{margin-top:22px;font-size:clamp(1.0625rem,1rem + .3vw,1.25rem);max-width:40ch}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.local{margin-top:28px;display:flex;align-items:center;gap:8px;color:var(--apoio);font-size:.9375rem}
+.local svg{width:18px;height:18px;color:var(--petroleo);flex:none}
+.foto{position:relative;margin:0}
+.foto img{width:100%;border-radius:16px;background:var(--fundo)}
+.hero .foto img{aspect-ratio:4/3;object-fit:cover}
+.legenda{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.92);color:var(--tinta);font:500 .75rem/1 Inter,sans-serif;padding:7px 10px;border-radius:6px}
+@media (max-width:480px){.hero .acoes .btn{flex:1 1 100%}}
+@media (max-width:860px){.hero-grid{grid-template-columns:minmax(0,1fr)}.hero h1{max-width:16ch}}
+
+/* Serviços */
+.servicos{background:var(--fundo)}
+.serv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;list-style:none;margin:0;padding:0}
+.serv{background:var(--branco);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:minmax(0,.64fr) minmax(0,1fr);transition:box-shadow .3s ease,transform .3s ease}
+.serv:hover{box-shadow:0 18px 40px -18px rgba(18,58,78,.28);transform:translateY(-2px)}
+.serv-foto{position:relative;margin:0;overflow:hidden;background:var(--borda)}
+.serv-foto img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.serv:hover .serv-foto img{transform:scale(1.04)}
+.serv-txt{padding:26px 24px 20px;display:grid;align-content:start;gap:10px}
+.serv-tit{display:flex;align-items:center;gap:10px}
+.serv-tit svg{width:24px;height:24px;color:var(--petroleo);flex:none}
+.serv h3{font-size:1.25rem;line-height:1.25;font-weight:700}
+.serv p{color:var(--apoio);font-size:.9375rem}
+.serv .serv-l1{color:var(--tinta);font-weight:500}
+.serv-rod{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px;padding-top:14px;border-top:1px solid var(--borda);font-size:.875rem;color:var(--apoio)}
+.serv-rod a{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--petroleo);text-decoration:none;min-height:44px}
+.serv-rod a:hover{color:var(--tinta)}
+.serv-rod a svg{width:16px;height:16px;transition:transform .2s ease}
+.serv-rod a:hover svg{transform:translateX(3px)}
+@media (max-width:1100px){.serv-grid{grid-template-columns:minmax(0,1fr)}.serv{grid-template-columns:minmax(0,.7fr) minmax(0,1fr)}}
+@media (max-width:600px){.serv{grid-template-columns:minmax(0,1fr)}.serv-foto img{aspect-ratio:4/3}.serv-rod{flex-direction:column;align-items:flex-start;gap:2px}}
+
+/* Unidade */
+.uni{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-areas:"head card" "mapa card";grid-template-rows:auto 1fr;gap:28px clamp(32px,5vw,72px);align-items:start}
+.uni>.sec-head{grid-area:head}.uni>.uni-card{grid-area:card}
+.mapa{grid-area:mapa;margin:0;border-radius:16px;overflow:hidden;background:var(--fundo);border:1px solid var(--borda);height:100%;min-height:280px}
+.mapa iframe{display:block;width:100%;height:100%;min-height:280px;border:0}
+.uni-card{border:1px solid var(--borda);border-radius:16px;padding:clamp(24px,3vw,36px);display:grid;gap:28px}
+.uni-card dl{margin:0;display:grid;gap:0}
+.uni-card .linha{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--borda)}
+.uni-card .linha:first-child{padding-top:0}
+.uni-card dt{font:600 .8125rem/1.6 Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--apoio)}
+.uni-card dd{margin:0;font-weight:500;color:var(--tinta);overflow-wrap:anywhere}
+.uni-card .acoes{margin-top:0}
+@media (max-width:860px){.uni{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "card" "mapa";grid-template-rows:auto}.mapa,.mapa iframe{min-height:300px}}
+@media (max-width:420px){.uni-card .linha{grid-template-columns:minmax(0,1fr);gap:4px}}
+
+/* Como agendar */
+.agendar{background:var(--fundo)}
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+.passo{padding:28px 24px;background:var(--branco);border-radius:14px;display:grid;gap:10px;align-content:start}
+.passo .num{font:800 2rem/1 Manrope,sans-serif;color:var(--folha);letter-spacing:-.02em;margin-bottom:10px}
+.passo h3{font-size:1.1875rem;line-height:1.3;font-weight:700}
+.passo p{color:var(--apoio);font-size:.9688rem}
+@media (max-width:860px){.passos{grid-template-columns:minmax(0,1fr)}}
+
+/* Equipe */
+.eq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.eq .foto img{aspect-ratio:4/5;object-fit:cover}
+.eq .foto{max-width:460px}
+.rt{margin-top:28px;padding-top:20px;border-top:1px solid var(--borda);display:grid;gap:4px}
+.rt span{font:600 .8125rem/1.4 Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--apoio)}
+.rt strong{font:600 1.0625rem/1.4 Inter,sans-serif;color:var(--tinta)}
+@media (max-width:860px){.eq{grid-template-columns:minmax(0,1fr)}.eq .foto{max-width:none}}
+
+/* Dúvidas */
+.faq{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);grid-template-areas:"head lista" "ajuda lista";grid-template-rows:auto 1fr;gap:32px clamp(32px,5vw,72px);align-items:start}
+.faq>.sec-head{grid-area:head}.faq-lista{grid-area:lista}
+.ajuda{grid-area:ajuda;background:var(--fundo);border-radius:16px;padding:28px 24px;display:grid;gap:10px;justify-items:start}
+.ajuda h3{font-size:1.25rem;font-weight:700;line-height:1.25}
+.ajuda p{color:var(--apoio);font-size:.9688rem}
+.ajuda-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;width:100%}
+.ajuda-acoes .btn{flex:1 1 200px}
+.faq-lista{border-top:1px solid var(--borda)}
+.faq details{border-bottom:1px solid var(--borda)}
+.faq summary{list-style:none;cursor:pointer;min-height:44px;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 4px;font:600 1.0625rem/1.4 Manrope,sans-serif;color:var(--tinta)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--petroleo)}
+.faq summary i{position:relative;width:28px;height:28px;border-radius:50%;background:var(--fundo);flex:none}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;margin:-1px 0 0 -6px;background:var(--petroleo);border-radius:1px;transition:transform .2s ease}
+.faq summary i::after{transform:rotate(90deg)}
+.faq details[open] summary i::after{transform:rotate(0)}
+.faq details p{padding:0 4px 24px;color:var(--apoio);max-width:60ch}
+@media (max-width:860px){.faq{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "lista" "ajuda";grid-template-rows:auto}}
+
+/* Faixa final */
+.faixa{background:var(--tinta);color:var(--branco)}
+.faixa-in{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.faixa h2{color:var(--branco);font-size:clamp(1.875rem,1.2rem + 2.6vw,3rem);line-height:1.1;font-weight:800;max-width:18ch}
+.faixa-cta{display:grid;gap:12px;justify-items:start}
+.faixa-cta .rotulo{font:600 .8125rem/1 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--folha-claro)}
+.btn-claro{background:var(--branco);color:var(--tinta)}
+.btn-claro:hover{background:var(--fundo);color:var(--tinta)}
+.btn-claro svg{color:var(--petroleo)}
+
+/* Equipe cards */
+.time{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;list-style:none;margin:clamp(36px,4vw,56px) 0 0;padding:0}
+.medico{display:grid;gap:14px;align-content:start}
+.medico .foto img{aspect-ratio:4/5;object-fit:cover;border-radius:14px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.medico .foto{overflow:hidden;border-radius:14px}
+.medico:hover .foto img{transform:scale(1.03)}
+.medico h3{font-size:1.125rem;font-weight:700;line-height:1.3}
+.medico .esp{color:var(--petroleo);font-weight:600;font-size:.9375rem}
+.medico .reg{color:var(--apoio);font-size:.875rem}
+.medico div{display:grid;gap:2px}
+@media (max-width:1024px){.time{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.time{gap:14px}.medico h3{font-size:1rem}}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;list-style:none;padding:0}
+.tags li{font-size:.8125rem;font-weight:500;color:var(--tinta);background:var(--fundo);padding:5px 10px;border-radius:999px}
+/* Rolagem */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+    .rv:nth-child(2){animation-range:entry 6% entry 61%}
+    .rv:nth-child(3){animation-range:entry 12% entry 67%}
+    .rv:nth-child(4){animation-range:entry 18% entry 73%}
+    @keyframes rv{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    .hero .foto img{animation:zoom linear both;animation-timeline:scroll(root);animation-range:0 700px}
+    @keyframes zoom{to{transform:scale(1.06) translateY(14px)}}
+    .hero .foto{overflow:hidden;border-radius:16px}
+    .faixa h2{animation:rv linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+  }
+}
+.faq details[open] p{animation:abre .3s ease both}
+@keyframes abre{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@supports (animation-timeline:scroll()){
+  .topo::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:12px;background:linear-gradient(rgba(18,58,78,.06),transparent);opacity:0;animation:sombra linear both;animation-timeline:scroll(root);animation-range:40px 120px;pointer-events:none}
+  @keyframes sombra{to{opacity:1}}
+}
+
+/* Rodapé */
+.rodape{padding:48px 0 40px;background:var(--branco)}
+.rod-top{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid var(--borda)}
+.rod-nav{display:flex;flex-wrap:wrap;gap:4px 12px;margin-left:-8px}
+.rod-nav a{color:var(--tinta);text-decoration:none;font-size:.9375rem;padding:10px 8px}
+.rod-nav a:hover{color:var(--petroleo)}
+.rod-info{display:grid;gap:6px;padding-top:24px;color:var(--apoio);font-size:.875rem}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="#inicio"><i aria-hidden="true"></i>Clínica Exemplo Saúde</a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#servicos">Serviços</a><a href="#unidade">Unidade</a><a href="#equipe">Equipe</a><a href="#duvidas">Dúvidas</a><a href="#contato">Contato</a>
+    </nav>
+    <details class="menu-m">
+      <summary aria-label="Abrir menu"><span aria-hidden="true"></span>Menu</summary>
+      <nav aria-label="Principal (celular)">
+        <a href="#servicos">Serviços</a><a href="#unidade">Unidade</a><a href="#equipe">Equipe</a><a href="#duvidas">Dúvidas</a><a href="#contato">Contato</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Atendimento de saúde com cuidado e organização.</h1>
+        <p class="lead">Consultas, exames e diagnóstico em um só lugar, com agendamento simples.</p>
+        <div class="acoes">
+          <a class="btn btn-primario" href="#">__WA__Agendar pelo WhatsApp</a>
+          <a class="btn btn-secundario" href="#servicos">Ver serviços</a>
+        </div>
+        <p class="local">__PIN__Rua Senador Pompeu, 501 · Centro, Fortaleza</p>
+      </div>
+      <figure class="foto">
+        <img src="__HERO__" width="1200" height="900" alt="Corredor de clínica claro, com bancos de espera e portas de consultório" fetchpriority="high">
+        <figcaption class="legenda">Foto ilustrativa</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section class="servicos" id="servicos" aria-labelledby="t-serv">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Serviços</p>
+        <h2 class="h2" id="t-serv">O que você encontra na clínica</h2>
+      </div>
+      <ul class="serv-grid">
+        <li class="serv rv">
+          <figure class="serv-foto"><img src="__SV1__" width="640" height="800" alt="Médica de jaleco atendendo no consultório, diante do computador" loading="lazy"><figcaption class="legenda">Foto ilustrativa</figcaption></figure>
+          <div class="serv-txt">
+            <div class="serv-tit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v6a5 5 0 0 0 10 0V3"/><path d="M10 14v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/></svg><h3>Consultas médicas</h3></div>
+            <p class="serv-l1">Atendimento clínico com hora marcada.</p>
+            <p>Consultas de rotina, check-up e acompanhamento. Quando preciso, o médico pede exames ou indica um especialista.</p>
+            <ul class="tags"><li>Clínica geral</li><li>Cardiologia</li><li>Ginecologia</li><li>Pediatria</li></ul>
+            <div class="serv-rod"><span>Duração média: 30 minutos</span><a href="#" aria-label="Agendar consultas médicas">Agendar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </div>
+        </li>
+        <li class="serv rv">
+          <figure class="serv-foto"><img src="__SV2__" width="640" height="800" alt="Tubos de coleta de sangue com tampa laranja sobre fundo azul" loading="lazy"><figcaption class="legenda">Foto ilustrativa</figcaption></figure>
+          <div class="serv-txt">
+            <div class="serv-tit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6.5L5 18a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-8.5V3"/><path d="M7.5 14h9"/></svg><h3>Exames laboratoriais</h3></div>
+            <p class="serv-l1">Coleta no local e orientação sobre o preparo.</p>
+            <p>A equipe informa o jejum e os cuidados antes da coleta. O resultado chega pelo WhatsApp ou fica disponível na recepção.</p>
+            <ul class="tags"><li>Hemograma</li><li>Glicemia</li><li>Colesterol</li><li>Urina</li><li>Tireoide</li></ul>
+            <div class="serv-rod"><span>Coleta de seg. a sáb. pela manhã</span><a href="#" aria-label="Agendar exames laboratoriais">Agendar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </div>
+        </li>
+        <li class="serv rv">
+          <figure class="serv-foto"><img src="__SV3__" width="640" height="800" alt="Aparelho de ultrassom com monitor em sala de exame" loading="lazy"><figcaption class="legenda">Foto ilustrativa</figcaption></figure>
+          <div class="serv-txt">
+            <div class="serv-tit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 11h2l1.5-3 3 6 1.5-3h2"/></svg><h3>Diagnóstico por imagem</h3></div>
+            <p class="serv-l1">Exames de imagem solicitados pelo seu médico.</p>
+            <p>Traga o pedido médico no dia. O laudo é entregue pela clínica, com orientação sobre o retorno.</p>
+            <ul class="tags"><li>Raio-X</li><li>Ultrassonografia</li><li>Eletrocardiograma</li></ul>
+            <div class="serv-rod"><span>Agendamento com pedido médico</span><a href="#" aria-label="Agendar diagnóstico por imagem">Agendar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </div>
+        </li>
+        <li class="serv rv">
+          <figure class="serv-foto"><img src="__SV4__" width="640" height="800" alt="Consultório odontológico com cadeira laranja e equipamentos" loading="lazy"><figcaption class="legenda">Foto ilustrativa</figcaption></figure>
+          <div class="serv-txt">
+            <div class="serv-tit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5.5C10.5 4 8.5 3.5 7 4c-2.5.8-3.5 3.6-2.6 6.4.6 1.9 1 3.8 1.2 5.8.2 2.3.9 4.8 2.2 4.8 1.6 0 1.5-4.5 4.2-4.5s2.6 4.5 4.2 4.5c1.3 0 2-2.5 2.2-4.8.2-2 .6-3.9 1.2-5.8.9-2.8-.1-5.6-2.6-6.4-1.5-.5-3.5 0-5 1.5z"/></svg><h3>Odontologia</h3></div>
+            <p class="serv-l1">Avaliação e cuidado com a saúde bucal.</p>
+            <p>Consulta de avaliação, limpeza e tratamentos com dentista. O plano de tratamento é explicado antes de começar.</p>
+            <ul class="tags"><li>Avaliação</li><li>Limpeza</li><li>Restauração</li><li>Clareamento</li></ul>
+            <div class="serv-rod"><span>Atendimento para adultos e crianças</span><a href="#" aria-label="Agendar odontologia">Agendar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="unidade" aria-labelledby="t-uni">
+    <div class="wrap uni">
+      <div class="sec-head rv" style="margin-bottom:0">
+        <p class="eyebrow">Unidade</p>
+        <h2 class="h2" id="t-uni">Onde estamos</h2>
+        <p class="lead">Confira o endereço e o horário antes de vir.</p>
+      </div>
+      <figure class="mapa rv">
+        <iframe title="Mapa: Rua Senador Pompeu, 501, Centro, Fortaleza - CE" src="https://www.google.com/maps?q=Rua+Senador+Pompeu,+501+-+Centro,+Fortaleza+-+CE&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </figure>
+      <div class="uni-card rv">
+        <p style="font:700 1.125rem/1.3 Manrope,sans-serif;color:var(--tinta);margin:0">Clinica Mais Saúde Consulta (Fortaleza CE)</p>
+        <dl>
+          <div class="linha"><dt>Endereço</dt><dd>Rua senador Pompeu, 501<br>Centro<br>Fortaleza / CE</dd></div>
+          <div class="linha"><dt>Telefone</dt><dd style="display:grid;gap:4px"><a href="tel:+558534783524">(85) 3478-3524</a><a href="tel:+5585991624040">(85) 99162-4040</a></dd></div>
+          <div class="linha"><dt>Horário</dt><dd>Seg. à Sex. dás <span style="white-space:nowrap">06:40hs às 18:00hs</span><br>Sáb. dás <span style="white-space:nowrap">07:00hs às 12:00hs</span></dd></div>
+        </dl>
+        <div class="acoes">
+          <a class="btn btn-secundario" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Senador+Pompeu+501+Centro+Fortaleza+CE" target="_blank" rel="noopener">__PIN__Ver mapa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="agendar" aria-labelledby="t-ag">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Como agendar</p>
+        <h2 class="h2" id="t-ag">Três passos para marcar</h2>
+      </div>
+      <ol class="passos">
+        <li class="passo rv"><span class="num" aria-hidden="true">01</span><h3>Escolha o serviço</h3><p>Consulta, exame ou atendimento odontológico.</p></li>
+        <li class="passo rv"><span class="num" aria-hidden="true">02</span><h3>Fale pelo WhatsApp ou telefone</h3><p>Nossa equipe tira dúvidas e verifica a agenda.</p></li>
+        <li class="passo rv"><span class="num" aria-hidden="true">03</span><h3>Confirme a data e o horário</h3><p>Você recebe a confirmação e as orientações.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="equipe" aria-labelledby="t-eq">
+    <div class="wrap">
+      <div class="eq-top" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;flex-wrap:wrap">
+        <div class="sec-head rv" style="margin-bottom:0;max-width:640px">
+          <p class="eyebrow">Equipe</p>
+          <h2 class="h2" id="t-eq">Profissionais de saúde com registro ativo</h2>
+          <p class="lead">Médicos, dentistas e equipe técnica trabalham de forma integrada, do agendamento ao resultado.</p>
+        </div>
+        <div class="rt rv" style="margin-top:0;border-top:0;padding-top:0">
+          <span>Responsável técnica</span>
+          <strong>Dra. Mariana Albuquerque · <span style="white-space:nowrap">CRM-CE [CRM]</span></strong>
+        </div>
+      </div>
+      <ul class="time">
+        <li class="medico rv">
+          <figure class="foto"><img src="__DR1__" width="560" height="700" alt="Médica de jaleco branco, com estetoscópio, de braços cruzados" loading="lazy"><figcaption class="legenda">Foto ilustrativa</figcaption></figure>
+          <div><h3>Dra. Mariana Albuquerque</h3><p class="esp">Clínica geral</p><p class="reg">CRM-CE [CRM]</p></div>
+        </li>
+        <li class="medico rv">
+          <figure class="foto"><img src="__DR2__" width="560" height="700" alt="Médico de óculos e jaleco branco sentado à mesa do consultório" loading="lazy"><figcaption class="legenda">Foto ilustrativa</figcaption></figure>
+          <div><h3>Dr. Rafael Menezes</h3><p class="esp">Cardiologia</p><p class="reg">CRM-CE [CRM]</p></div>
+        </li>
+        <li class="medico rv">
+          <figure class="foto"><img src="__DR3__" width="560" height="700" alt="Médica sorridente de jaleco branco segurando um estetoscópio" loading="lazy"><figcaption class="legenda">Foto ilustrativa</figcaption></figure>
+          <div><h3>Dra. Juliana Castro</h3><p class="esp">Ginecologia e obstetrícia</p><p class="reg">CRM-CE [CRM]</p></div>
+        </li>
+        <li class="medico rv">
+          <figure class="foto"><img src="__DR4__" width="560" height="700" alt="Profissional de jaleco branco lendo uma prancheta" loading="lazy"><figcaption class="legenda">Foto ilustrativa</figcaption></figure>
+          <div><h3>Dr. Lucas Farias</h3><p class="esp">Odontologia</p><p class="reg">CRO-CE [CRO]</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="servicos" id="duvidas" aria-labelledby="t-faq" style="background:var(--branco);padding-top:0">
+    <div class="wrap faq">
+      <div class="sec-head rv" style="margin-bottom:0">
+        <p class="eyebrow">Dúvidas frequentes</p>
+        <h2 class="h2" id="t-faq">Antes de agendar</h2>
+      </div>
+      <aside class="ajuda rv" aria-labelledby="t-ajuda">
+        <h3 id="t-ajuda">Não achou sua dúvida?</h3>
+        <p>Fale com a recepção. Respondemos em horário de atendimento.</p>
+        <div class="ajuda-acoes">
+          <a class="btn btn-primario" href="#">__WA__Falar pelo WhatsApp</a>
+          <a class="btn btn-secundario" href="tel:+558534783524"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>(85) 3478-3524</a>
+        </div>
+      </aside>
+      <div class="faq-lista">
+        <details><summary>Aceita convênios?<i aria-hidden="true"></i></summary><p>Atendemos particular e alguns convênios. Confirme o seu plano pelo WhatsApp antes de agendar.</p></details>
+        <details><summary>Preciso levar documentos?<i aria-hidden="true"></i></summary><p>Leve um documento com foto, a carteirinha do convênio (se tiver) e o pedido médico, quando houver.</p></details>
+        <details><summary>Atendem sem agendamento?<i aria-hidden="true"></i></summary><p>Sim, por ordem de chegada e conforme a agenda do dia. Com horário marcado, a espera é menor.</p></details>
+        <details><summary>Quais formas de pagamento?<i aria-hidden="true"></i></summary><p>Pix, cartão de débito, cartão de crédito e dinheiro.</p></details>
+        <details><summary>Como recebo o resultado dos exames?<i aria-hidden="true"></i></summary><p>A maioria dos exames laboratoriais fica pronta em até 2 dias úteis. Você recebe pelo WhatsApp ou retira na recepção.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="faixa" id="contato" aria-labelledby="t-fx">
+    <div class="wrap faixa-in">
+      <h2 id="t-fx">Fale com a gente e agende sua consulta.</h2>
+      <div class="faixa-cta">
+        <p class="rotulo">Atendimento</p>
+        <a class="btn btn-claro" href="#">__WA__Agendar pelo WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rod-top">
+      <a class="marca" href="#inicio"><i aria-hidden="true"></i>Clínica Exemplo Saúde</a>
+      <nav class="rod-nav" aria-label="Rodapé">
+        <a href="#servicos">Serviços</a><a href="#unidade">Unidade</a><a href="#equipe">Equipe</a><a href="#duvidas">Dúvidas</a><a href="#contato">Contato</a>
+      </nav>
+    </div>
+    <div class="rod-info">
+      <p>Página de exemplo. Nomes dos profissionais e demais dados são fictícios, exceto endereço, telefones e horário da unidade.</p>
+      <p>Fotos ilustrativas de bancos de imagens</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
